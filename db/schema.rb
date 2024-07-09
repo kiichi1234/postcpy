@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_13_151325) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_01_162501) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_13_151325) do
     t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
 end
