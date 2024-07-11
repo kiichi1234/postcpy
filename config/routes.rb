@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create',as: :login_to
   delete '/logout', to: 'sessions#destroy'
   
+  
   resources :users do
     member do
     end
   end
    resources :posts
+   post '/posts', to:  'posts#create'
 end
