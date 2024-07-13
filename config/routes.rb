@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     end
   end
    resources :posts
-   post '/posts', to:  'posts#create'
+   
 end
