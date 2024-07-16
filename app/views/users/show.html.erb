@@ -1,2 +1,2 @@
 <%= "ログイン後のページ" %>
-<%= link_to "ログアウト", logout_path, method: :delete %>
+<%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
