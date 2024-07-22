@@ -1,14 +1,15 @@
 class PostsController < ApplicationController
    
    def new
-        @post = post.new
+        @post = Post.new
    end
     
     def create
-        @post = post.new([:post])
+        @post = Post.new(post_params)
         
         if @post.save
             flash[:notice] = "投稿しました。"
+            Rails.logger.info "成功です。"
         
         else
             flash[:alert] = "投稿失敗しました。"

@@ -1,2 +1,4 @@
-<%= "ログイン後のページ" %>
+<%=@posts.each |post|%>
+<hr>
+<p>投稿内容:<%= @posts.body%></p>
 <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>

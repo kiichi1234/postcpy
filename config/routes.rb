@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'posts#new'
+  root 'staticpages#top'
   get '/signup', to: 'users#new'
   
   get    '/login', to: 'sessions#new'
