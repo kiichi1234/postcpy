@@ -6,3 +6,4 @@
     <%= f.text_area :body %>
     <%= f.submit '投稿する' %>
 <% end %>
+<%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>

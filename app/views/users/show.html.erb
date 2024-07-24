@@ -1,5 +1,14 @@
-<% @posts.each do |post| %>
-<hr>
-<p>投稿内容:<%= @posts.body%></p>
+<h1>あなたの投稿</h1>
+<table>
+    <tr>
+        <th>カテゴリー</th>
+        <th>内容</th>
+    </tr>
+    <% @posts.each do |current_user_post| %>
+        <tr>
+            <td><%= current_user_post.post.category %></td>
+            <td><%= post.body %></td>
+        </tr>
+    <% end %>
+</table>
 <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
-<% end %>
