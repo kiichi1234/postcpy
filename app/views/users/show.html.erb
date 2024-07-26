@@ -6,8 +6,8 @@
     </tr>
     <% @posts.each do |current_user_post| %>
         <tr>
-            <td><%= current_user_post.post.category %></td>
-            <td><%= post.body %></td>
+            <td><%= current_user_post.category %></td>
+            <td><%= current_user_post.body %></td>
         </tr>
     <% end %>
 </table>
