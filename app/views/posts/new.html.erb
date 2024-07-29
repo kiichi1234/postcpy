@@ -7,4 +7,4 @@
     <%= f.submit '投稿する' %>
 <% end %>
 <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
-<%= link_to "あなたの投稿", users_path %>
+<%= link_to "あなたの投稿", user_path(current_user) %>

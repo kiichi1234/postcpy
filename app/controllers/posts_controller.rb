@@ -8,15 +8,23 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         
-        if @post.save!
+        if @post.save
             flash[:notice] = "投稿しました。"
-            Rails.logger.info "成功です。"
+            
         
         else
             render :new
             flash[:alert] = "投稿失敗しました。"
-            Rails.logger.info "失敗です。"
             
+            
+        end
+    end
+    
+    def destroy
+        post = Post.find(params[:id])
+        if post.user_id = current_user.id
+            post.destroy!
+            Rails.logger.info "成功です。"
         end
     end
     

@@ -8,6 +8,7 @@
         <tr>
             <td><%= current_user_post.category %></td>
             <td><%= current_user_post.body %></td>
+            <td><%= link_to  "削除", data: {turbo_method: :delete} %></td>
         </tr>
     <% end %>
 </table>
