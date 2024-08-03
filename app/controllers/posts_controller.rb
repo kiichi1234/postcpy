@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-   
+   before_action :edit, only: %i(update)
    def new
         @post = Post.new
    end
@@ -17,6 +17,19 @@ class PostsController < ApplicationController
             flash[:alert] = "投稿失敗しました。"
             
             
+        end
+    end
+    
+    def edit
+        @post = Post.find(params[:id])
+    end
+    
+    def update
+        if @post.user_id == current_user.id
+            @post.update(post_params)
+            redirect_to user_path(current_user)
+        else
+            render :edit
         end
     end
     
