@@ -1,0 +1,8 @@
+<h1>投稿内容編集</h1>
+<%= form_with model: @post do |f| %>
+    <%= f.label :カテゴリー %>
+    <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
+    <%= f.label :本文　%>
+    <%= f.text_area :body %>
+    <%= f.submit '更新する' %>
+<% end %>
