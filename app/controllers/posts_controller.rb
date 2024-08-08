@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
    before_action :edit, only: %i(update)
+   before_action :correct_user, only: %i(edit update)
    def new
         @post = Post.new
    end
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
     end
     
     def edit
-        @post = Post.find(params[:id])
+       @post = current_user.posts.find(params[:id])
     end
     
     def update

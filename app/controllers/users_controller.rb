@@ -19,7 +19,9 @@ class UsersController < ApplicationController
       flash[:info] = 'すでにログインしています。'
       redirect_to current_user
     end
+    
     @user = User.new
+    Rails.logger.info "成功です。"
   end
   
   def create
