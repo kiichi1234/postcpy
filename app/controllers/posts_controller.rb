@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
    before_action :edit, only: %i(update)
-   before_action :correct_user, only: %i(edit update)
+   
+   def index
+        @posts = Post.order(created_at: :desc)
+   end
+   
    def new
         @post = Post.new
    end
