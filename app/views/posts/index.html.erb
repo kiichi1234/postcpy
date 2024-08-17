@@ -11,7 +11,7 @@
           <td><%= post.id %></td>
           <td><%= post.category %></td>
           <td><%= post.user.name %></td>
-          <td><%= post.body %></td>
+          <td><%= link_to post.body,post_path(@posts) %></td>
          
       </tr>
     <% end %>
