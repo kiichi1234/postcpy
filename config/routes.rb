@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   
   
   resources :users do
-    member do
-    end
+   
   end
    resources :posts do
      resources :comments, only: [:create, :destroy]
