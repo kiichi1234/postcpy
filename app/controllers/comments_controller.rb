@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
     def create
-        @post = Post.find(params[:id])
-        @commment = Comment.new(comment_params)
+        @post = Post.find(params[:post_id])
+        Rails.logger.info "成功です。"
+        @comment = Comment.new(comment_params)
+        Rails.logger.info "newも成功です。"
         @comment.user_id = current_user.id
         @comment.post_id = @post.id
         @comment.save
-        debugger
-        Rails.logger.info "成功です。"
         redirect_to posts_url
     end
     
