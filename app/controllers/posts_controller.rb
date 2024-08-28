@@ -2,6 +2,7 @@ class PostsController < ApplicationController
    before_action :edit, only: %i(update)
    
    def index
+        @category = params[:category]
         @posts = Post.order(created_at: :desc)
    end
    
@@ -59,6 +60,10 @@ class PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:category, :body)
         
+    end
+    
+    def post_search_params
+        params.fetch(:search, {}).permit(:category, :word)
     end
     
     
