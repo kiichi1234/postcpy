@@ -2,7 +2,7 @@
 <div>
     <%= form_with(scope: :search, url: posts_path, method: :get, local: true) do |f| %>
         <%= f.label :カテゴリー %>
-        <%= f.select :category, [["身体面", "physical aspect"], ["精神面", "mental aspect"], ["生活面", "Life aspect"], ["その他", "others"]], include_blank: "選択して下さい" %>
+        <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
         <%= f.label :内容　%>
         <%= f.text_area :word %>
         <%= f.submit '検索する' %>
