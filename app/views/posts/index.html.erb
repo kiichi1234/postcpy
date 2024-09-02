@@ -1,4 +1,13 @@
 <h1>投稿一覧表示</h1>
+<div>
+    <%= form_with(scope: :search, url: posts_path, method: :get, local: true) do |f| %>
+        <%= f.label :カテゴリー %>
+        <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
+        <%= f.label :内容　%>
+        <%= f.text_area :word %>
+        <%= f.submit '検索する' %>
+    <% end %>
+</div>
 <table>
     <tr>
         <th>ID</th>

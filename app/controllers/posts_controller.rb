@@ -1,11 +1,23 @@
 class PostsController < ApplicationController
    before_action :edit, only: %i(update)
    
-   def index
-        @posts = Post.order(created_at: :desc)
-   end
+def index
+  @posts = Post.order(created_at: :desc) 
+  @category = params.dig(:search, :category)
+  @word = params.dig(:search, :word)
+
+    if @category.present?
+       @posts = @posts.where(category: @category)
+    end
+
+    if @word.present?
+       @posts = @posts.where("body LIKE ?", "%#{@word}%")
+    end
+
+end
    
    def show
+       
         @post = Post.find(params[:id])
         @comment = Comment.new
         @comments = @post.comments.includes(:user).all
@@ -59,6 +71,10 @@ class PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:category, :body)
         
+    end
+    
+    def post_search_params
+        params.fetch(:search, {}).permit(:category, :word)
     end
     
     
