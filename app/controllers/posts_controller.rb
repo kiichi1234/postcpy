@@ -3,24 +3,17 @@ class PostsController < ApplicationController
    
 def index
   @posts = Post.order(created_at: :desc) 
-  
+  @category = params.dig(:search, :category)
+  @word = params.dig(:search, :word)
 
-  if params[:search].present?
-    if params[:search][:category].present?
-      @category = params[:search][:category]
-      @posts = @posts.where(category: @category)
+    if @category.present?
+       @posts = @posts.where(category: @category)
     end
 
-    if params[:search][:word].present?
-      @word = params[:search][:word]
-      @posts = @posts.where("body LIKE ?", "%#{@word}%")
+    if @word.present?
+       @posts = @posts.where("body LIKE ?", "%#{@word}%")
     end
-    if params[:search][:category].present? && params[:search][:word].present?
-        @category = params[:search][:category]
-        @word = params[:search][:word]
-       @posts = Post.where("category = ? AND body LIKE ?", @category, "%#{@word}%")
-    end
-  end
+
 end
    
    def show
