@@ -1,18 +1,16 @@
 class PostsController < ApplicationController
    before_action :edit, only: %i(update)
    
+   
 def index
   @posts = Post.order(created_at: :desc) 
   @category = params.dig(:search, :category)
   @word = params.dig(:search, :word)
 
-    if @category.present?
-       @posts = @posts.where(category: @category)
-    end
+    @posts = @posts.where(category: @category) if @category.present?
 
-    if @word.present?
-       @posts = @posts.where("body LIKE ?", "%#{@word}%")
-    end
+    @posts = @posts.where("body LIKE ?", "%#{@word}%") if @word.present?
+       
 
 end
    
