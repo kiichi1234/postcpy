@@ -1,6 +1,5 @@
 <h1>相談内容投稿ページ</h1>
 <% if !current_user.viewer? %>
-    <P><%= "閲覧ユーザーのため投稿はできません。" %></P>
     <%= form_with model: @post do |f| %>
         <%= f.label :カテゴリー %>
         <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>

@@ -29,15 +29,13 @@ end
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         
-        if @post.save
+        if !current_user.viewer? && @post.save
             flash[:notice] = "投稿しました。"
-            
-        
+            redirect_to user_path(current_user)
         else
-            render :new
+           
             flash[:alert] = "投稿失敗しました。"
-            
-            
+            render :new
         end
     end
     
