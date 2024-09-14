@@ -5,5 +5,7 @@
     <%= f.password_field :password %>
     <%= f.label :パスワード再確認 %>
     <%= f.password_field :password_confirmation %>
+    <%= f.label :viewer, "閲覧ユーザーで作成する" %>
+    <%= f.check_box :viewer %>
     <%= f.submit '登録する' %>
 <% end %>

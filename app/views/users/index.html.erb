@@ -1,0 +1,13 @@
+<h1>ユーザー 一覧表示</h1>
+
+<table>
+    <tr>
+        <th>名前</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+          <td><%= user.name %></td>
+          <td><%= link_to  "削除", user_path(user) , data: {turbo_method: :delete} %></td>
+      </tr>
+    <% end %>
+</table>

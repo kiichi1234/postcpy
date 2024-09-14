@@ -1,18 +1,16 @@
 class PostsController < ApplicationController
    before_action :edit, only: %i(update)
    
+   
 def index
   @posts = Post.order(created_at: :desc) 
   @category = params.dig(:search, :category)
   @word = params.dig(:search, :word)
 
-    if @category.present?
-       @posts = @posts.where(category: @category)
-    end
+    @posts = @posts.where(category: @category) if @category.present?
 
-    if @word.present?
-       @posts = @posts.where("body LIKE ?", "%#{@word}%")
-    end
+    @posts = @posts.where("body LIKE ?", "%#{@word}%") if @word.present?
+       
 
 end
    
@@ -31,15 +29,14 @@ end
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         
-        if @post.save
-            flash[:notice] = "投稿しました。"
-            
-        
+        if !current_user.viewer? && @post.save
+          respond_to do |format|
+            format.html { redirect_to user_path(current_user), notice: "Quote was successfully created." }
+            format.turbo_stream { flash[:success] = "投稿成功しました！" }
+          end
         else
-            render :new
-            flash[:alert] = "投稿失敗しました。"
-            
-            
+          flash[:alert] = "投稿失敗しました。"
+          render :new
         end
     end
     
