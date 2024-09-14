@@ -30,12 +30,13 @@ end
         @post.user_id = current_user.id
         
         if !current_user.viewer? && @post.save
-            flash[:notice] = "投稿しました。"
-            redirect_to user_path(current_user)
+          respond_to do |format|
+            format.html { redirect_to user_path(current_user), notice: "Quote was successfully created." }
+            format.turbo_stream { flash[:success] = "投稿成功しました！" }
+          end
         else
-           
-            flash[:alert] = "投稿失敗しました。"
-            render :new
+          flash[:alert] = "投稿失敗しました。"
+          render :new
         end
     end
     
