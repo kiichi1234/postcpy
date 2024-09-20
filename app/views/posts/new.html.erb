@@ -1,10 +1,18 @@
 <h1>相談内容投稿ページ</h1>
-<%= form_with model: @post do |f| %>
-    <%= f.label :カテゴリー %>
-    <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
-    <%= f.label :本文　%>
-    <%= f.text_area :body %>
-    <%= f.submit '投稿する' %>
+<% if !current_user.viewer? %>
+    <%= form_with model: @post do |f| %>
+        <%= f.label :カテゴリー %>
+        <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
+        <%= f.label :本文　%>
+        <%= f.text_area :body %>
+        <%= f.submit '投稿する' %>
+    <% end %>
+    
+    <%= link_to "あなたの投稿", user_path(current_user) %>
+    <%= link_to "ユーザー一覧", users_path(current_user) if current_user.admin? %>
 <% end %>
-<%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
-<%= link_to "あなたの投稿", user_path(current_user) %>
+    <% if current_user.viewer? %>
+        <P><%= "閲覧ユーザーのため投稿はできません。" %></P>
+        <%= link_to "みんなの投稿", posts_path(current_user) %>
+    <% end %>
+    <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
