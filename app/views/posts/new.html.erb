@@ -1,18 +1,35 @@
-<h1>相談内容投稿ページ</h1>
-<% if !current_user.viewer? %>
-    <%= form_with model: @post do |f| %>
-        <%= f.label :カテゴリー %>
-        <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
-        <%= f.label :本文　%>
-        <%= f.text_area :body %>
-        <%= f.submit '投稿する' %>
-    <% end %>
-    
-    <%= link_to "あなたの投稿", user_path(current_user) %>
-    <%= link_to "ユーザー一覧", users_path(current_user) if current_user.admin? %>
-<% end %>
-    <% if current_user.viewer? %>
-        <P><%= "閲覧ユーザーのため投稿はできません。" %></P>
-        <%= link_to "みんなの投稿", posts_path(current_user) %>
-    <% end %>
-    <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">相談内容投稿</h1>
+  <% if !current_user.viewer? %>
+    <div class="card p-4">
+      <%= form_with model: @post, class: "form" do |f| %>
+        <div class="mb-3">
+          <%= f.label :category, "カテゴリー", class: "form-label" %>
+          <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]],
+                       include_blank: "選択して下さい", class: "form-select" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :body, "本文", class: "form-label" %>
+          <%= f.text_area :body, class: "form-control", rows: 5 %>
+        </div>
+        <div class="text-center">
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-4">
+      <%= link_to "あなたの投稿", user_path(current_user), class: "btn btn-secondary me-2" %>
+      <%= link_to "ユーザー一覧", users_path(current_user), class: "btn btn-info" if current_user.admin? %>
+    </div>
+  <% end %>
+
+  <% if current_user.viewer? %>
+    <div class="alert alert-warning mt-4" role="alert">
+      <p class="mb-0">閲覧ユーザーのため投稿はできません。</p>
+    </div>
+    <%= link_to "みんなの投稿", posts_path(current_user), class: "btn btn-primary mt-2" %>
+  <% end %>
+  
+  <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-danger mt-4" %>
+</div>

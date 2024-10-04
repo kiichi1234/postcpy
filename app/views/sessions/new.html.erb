@@ -1,6 +1,22 @@
-<%= form_for(:session, url: login_to_path, method: 'POST') do |f| %>
-  name<%= f.text_field :name %>
-    password<%= f.text_field :password %>
-    <%= f.submit 'ログイン' %>
-<% end %>
-<%= link_to "新規登録はこちらから", new_user_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= form_for(:session, url: login_to_path, method: "POST") do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "Name", class: "form-label" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, "Password", class: "form-label" %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <div class="text-center">
+          <%= f.submit "ログイン", class: "btn btn-primary w-100" %>
+        </div>
+      <% end %>
+      <div class="text-center mt-3">
+        <%= link_to "新規登録はこちらから", new_user_path, class: "btn btn-link" %>
+      </div>
+    </div>
+  </div>
+</div>

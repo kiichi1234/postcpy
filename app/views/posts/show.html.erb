@@ -1,9 +1,23 @@
-<p><%= @post.body %></p>
-<%= form_with model: [@post, @comment],local: true do |f|%>
-    <%= f.label :内容　%>
-    <%= f.text_area :content %>
-    <%= f.submit '投稿する' %>
-<% end %>
-<% @comments.each do |current_comment| %>
-    <%= current_comment.content %>
-<% end %>
+<div class="border-bottom pb-2 mb-4">
+    <p class="text-center mt-4"><%= @post.body %></p>
+</div>
+<div class="d-flex justify-content-center">
+  <%= form_with model: [@post, @comment], local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :content, "内容", class: "form-label" %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+    </div>
+    <div class="form-group mt-3">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<div class="container mt-4">
+  <pclass="mb-4">返信内容</p>
+  <% @comments.each do |current_comment| %>
+    <div class="pb-2 mb-2 border-bottom">
+      <p class="mb-0"><%= current_comment.content %></p>
+    </div>
+  <% end %>
+</div>
+</div>

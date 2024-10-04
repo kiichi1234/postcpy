@@ -1,27 +1,43 @@
-<h1>投稿一覧表示</h1>
-<div>
-    <%= form_with(scope: :search, url: posts_path, method: :get, local: true) do |f| %>
-        <%= f.label :カテゴリー %>
-        <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
-        <%= f.label :内容　%>
-        <%= f.text_area :word %>
-        <%= f.submit '検索する' %>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">投稿一覧表示</h1>
+  
+  <div class="card p-4 mb-4">
+    <%= form_with(scope: :search, url: posts_path, method: :get, local: true, class: "form-inline") do |f| %>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <%= f.label :category, "カテゴリー", class: "form-label" %>
+          <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]],
+                       include_blank: "選択して下さい", class: "form-select" %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :word, "内容", class: "form-label" %>
+          <%= f.text_area :word, class: "form-control", rows: 1 %>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <%= f.submit "検索する", class: "btn btn-primary w-100" %>
+        </div>
+      </div>
     <% end %>
-</div>
-<table>
-    <tr>
+  </div>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
         <th>ID</th>
         <th>カテゴリー</th>
         <th>投稿者名</th>
         <th>内容</th>
-    </tr>
-    <% @posts.each do |post| %>
-      <tr>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
           <td><%= post.id %></td>
           <td><%= post.category %></td>
           <td><%= post.user.name %></td>
-          <td><%= link_to post.body,post_path(post) %></td>
-         
-      </tr>
-    <% end %>
-</table>
+          <td><%= link_to post.body, post_path(post), class: "text-decoration-none" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

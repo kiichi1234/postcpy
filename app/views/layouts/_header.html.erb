@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">相談アプリ clear</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if logged_in? %>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% unless current_page?(new_post_path) %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_post_path %>">相談内容投稿</a>
+          </li>
+          <% end %>
+          <% unless current_page?(user_path(current_user)) %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= user_path(current_user) %>">あなたの投稿</a>
+          </li>
+          <% end %>
+          <% unless current_page?(posts_path(current_user)) %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= posts_path(current_user) %>">みんなの投稿</a>
+          </li>
+          <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= logout_path %>" data-turbo-method="delete">ログアウト</a>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</nav>

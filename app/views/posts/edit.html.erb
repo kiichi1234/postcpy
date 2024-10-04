@@ -1,8 +1,20 @@
-<h1>投稿内容編集</h1>
-<%= form_with model: @post do |f| %>
-    <%= f.label :カテゴリー %>
-    <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]], include_blank: "選択して下さい" %>
-    <%= f.label :本文　%>
-    <%= f.text_area :body %>
-    <%= f.submit '更新する' %>
-<% end %>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">投稿内容編集</h1>
+  
+  <%= form_with model: @post, class: "form" do |f| %>
+    <div class="mb-3">
+      <%= f.label :category, "カテゴリー", class: "form-label" %>
+      <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]],
+                   include_blank: "選択して下さい", class: "form-select" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :body, "本文", class: "form-label" %>
+      <%= f.text_area :body, class: "form-control", rows: 5 %>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "更新する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
