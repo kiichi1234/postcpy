@@ -5,7 +5,7 @@
       <%= form_with model: @post, class: "form" do |f| %>
         <div class="mb-3">
           <%= f.label :category, "カテゴリー", class: "form-label" %>
-          <%= f.select :category, [["身体面", "身体面"], ["精神面", "精神面"], ["生活面", "生活面"], ["その他", "その他"]],
+          <%= f.select :category, [["身体面", "physical aspect"], ["精神面", "mental aspect"], ["生活面", "life aspect"], ["その他", "other"]],
                        include_blank: "選択して下さい", class: "form-select" %>
         </div>
         <div class="mb-3">
@@ -18,18 +18,11 @@
       <% end %>
     </div>
 
-    <div class="mt-4">
-      <%= link_to "あなたの投稿", user_path(current_user), class: "btn btn-secondary me-2" %>
-      <%= link_to "ユーザー一覧", users_path(current_user), class: "btn btn-info" if current_user.admin? %>
-    </div>
   <% end %>
 
   <% if current_user.viewer? %>
     <div class="alert alert-warning mt-4" role="alert">
       <p class="mb-0">閲覧ユーザーのため投稿はできません。</p>
     </div>
-    <%= link_to "みんなの投稿", posts_path(current_user), class: "btn btn-primary mt-2" %>
   <% end %>
-  
-  <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-danger mt-4" %>
 </div>

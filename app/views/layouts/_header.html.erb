@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light ">
   <div class="container">
     <a class="navbar-brand" href="#">相談アプリ clear</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,6 +7,13 @@
     <% if logged_in? %>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <% unless current_page?(users_path(current_user)) %>
+          <li class="nav-item">
+            <% if current_user.admin? %>
+            <a class="nav-link" href="<%= users_path(current_user) %>">ユーザー一覧</a>
+          </li>
+          <% end %>
+          <% end %>
           <% unless current_page?(new_post_path) %>
           <li class="nav-item">
             <a class="nav-link" href="<%= new_post_path %>">相談内容投稿</a>

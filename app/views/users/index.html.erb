@@ -1,13 +1,22 @@
-<h1>ユーザー 一覧表示</h1>
+<h1 class="my-4">ユーザー 一覧表示</h1>
 
-<table>
-    <tr>
-        <th>名前</th>
-    </tr>
-    <% @users.each do |user| %>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-light">
       <tr>
-          <td><%= user.name %></td>
-          <td><%= link_to "削除", user_path(user), data: { turbo_method: :delete } %></td>
+        <th>名前</th>
+        <th></th>
       </tr>
-    <% end %>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td>
+            <%= link_to "削除", user_path(user), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, confirm: "本当に削除しますか？" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

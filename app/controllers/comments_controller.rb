@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
     @comment.save
-    redirect_to posts_url
+    redirect_to post_path(@post)
   end
 
   private
