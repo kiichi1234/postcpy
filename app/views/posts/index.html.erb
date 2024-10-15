@@ -19,6 +19,11 @@
       </div>
     <% end %>
   </div>
+    <% if current_user.viewer? %>
+    <div class="alert alert-warning mt-4" role="alert">
+      <p class="mb-0">閲覧ユーザーのため投稿はできません。</p>
+    </div>
+  <% end %>
   
   <table class="table table-striped">
     <thead>
@@ -35,7 +40,8 @@
           <td><%= post.id %></td>
           <td><%= category_in_japanese(post.category) %></td>
           <td><%= post.user.name %></td>
-          <td><%= link_to post.body, post_path(post), class: "text-decoration-none" %></td>
+          <td><%= link_to post.body, post_path(post), class: "text-decoration-none"  if !current_user.viewer? %></td>
+          <td><%= post.body if current_user.viewer? %></td>
         </tr>
       <% end %>
     </tbody>
