@@ -1,13 +1,20 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    Rails.logger.info "成功です。"
     @comment = Comment.new(comment_params)
-    Rails.logger.info "newも成功です。"
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
-    @comment.save
-    redirect_to post_path(@post)
+  
+    if current_user.viewer?
+      raise "閲覧ユーザーのため返信出来ません。"
+    elsif @comment.save
+      redirect_to post_path(current_user), notice: "返信が成功しました。"
+    else
+      raise "保存に失敗しました。"
+    end
+    
+  rescue => e
+    flash[:alert] = e.message
   end
 
   private
