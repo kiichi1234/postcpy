@@ -1,23 +1,26 @@
-<div class="border-bottom pb-2 mb-4">
-    <p class="text-center mt-4"><%= @post.body %></p>
-</div>
-<div class="d-flex justify-content-center">
-  <%= form_with model: [@post, @comment], local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :content, "内容", class: "form-label" %>
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-    </div>
-    <div class="form-group mt-3">
-      <%= f.submit "投稿する", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
 <div class="container mt-4">
-  <pclass="mb-4">返信内容</p>
+  <p class="linebreak mt-4"><%= @post.body %></p>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-8"> 
+    <%= form_with model: [@post, @comment], local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :content, "内容", class: "form-label" %>
+        <%= f.text_area :content, class: "form-control", rows: 5 %> 
+      </div>
+      <div class="form-group mt-3">
+        <%= f.submit "投稿する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <p class="mb-4">返信内容</p>
   <% @comments.each do |current_comment| %>
     <div class="pb-2 mb-2 border-bottom">
-      <p class="mb-0"><%= current_comment.content %></p>
+      <p class="linebreak mb-0"><%= current_comment.content %></p>
     </div>
   <% end %>
-</div>
 </div>

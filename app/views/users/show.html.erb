@@ -1,24 +1,28 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4">あなたの投稿</h1>
   
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>カテゴリー</th>
-        <th>内容</th>
-        <th>編集</th>
-        <th>削除</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @posts.each do |current_user_post| %>
-        <tr>
-          <td><%= category_in_japanese(current_user_post.category) %></td>
-          <td><%= current_user_post.body %></td>
-          <td><%= link_to "編集", edit_post_path(current_user_post), class: "btn btn-success" %></td>
-          <td><%= link_to "削除", post_path(current_user_post), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+<th class="first-column">カテゴリー</th>
+<th class="second-column">内容</th>
+<th class="third-column">編集</th>
+<th class="fourth-column">削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |current_user_post| %>
+            <tr>
+              <td><%= category_in_japanese(current_user_post.category) %></td>
+              <td class="text-wrap"><%= current_user_post.body %></td>
+              <td><%= link_to "編集", edit_post_path(current_user_post), class: "btn btn-success" %></td>
+              <td><%= link_to "削除", post_path(current_user_post), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

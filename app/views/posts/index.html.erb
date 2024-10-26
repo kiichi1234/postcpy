@@ -19,13 +19,13 @@
       </div>
     <% end %>
   </div>
-  
+  <div class="col-md-8">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>カテゴリー</th>
-        <th>投稿者名</th>
+        <th class="first-column">ID</th>
+        <th class="first-column">カテゴリー</th>
+        <th class="first-column">投稿者名</th>
         <th>内容</th>
       </tr>
     </thead>
@@ -34,10 +34,11 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= category_in_japanese(post.category) %></td>
-          <td><%= post.user.name %></td>
+          <td><%= link_to post.user.name,block_user_path(post.user) %></td>
           <td><%= link_to post.body, post_path(post), class: "text-decoration-none" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
 </div>

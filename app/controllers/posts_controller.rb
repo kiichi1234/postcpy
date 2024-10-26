@@ -26,10 +26,7 @@ class PostsController < ApplicationController
     if current_user.viewer?
       raise "閲覧ユーザーのため投稿出来ません。"
     elsif @post.save
-      
-         redirect_to user_path(current_user), notice: "投稿が成功しました。" 
-        
-      
+      redirect_to user_path(current_user), notice: "投稿が成功しました。"
     else
       raise "保存に失敗しました。"
     end

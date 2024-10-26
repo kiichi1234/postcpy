@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_or_correct, only: %i(show)
 
   def index
-    @users = User.where.not(admin:true).order(created_at: :desc)
+    @users = User.where.not(admin: true).order(created_at: :desc)
   end
 
   def show
@@ -44,6 +44,10 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def block
+    
   end
 
   def destroy
