@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_25_134117) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_08_130552) do
+  create_table "blocks", force: :cascade do |t|
+    t.integer "blocker_id", null: false
+    t.integer "blocked_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked_id"], name: "index_blocks_on_blocked_id"
+    t.index ["blocker_id"], name: "index_blocks_on_blocker_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "post_id", null: false
@@ -41,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_25_134117) do
     t.boolean "blocking_flag", default: false, null: false
   end
 
+  add_foreign_key "blocks", "users", column: "blocked_id"
+  add_foreign_key "blocks", "users", column: "blocker_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
 end

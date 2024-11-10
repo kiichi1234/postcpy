@@ -40,15 +40,13 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= category_in_japanese(post.category) %></td>
-
-          <td><%= link_to post.user.name,block_user_path(post.user) %></td>
-          
-
-          
-          <td><%= link_to post.body, post_path(post), class: "text-decoration-none"  if !current_user.viewer? %></td>
+          <td><%= link_to post.user.name, block_user_path(post.user) %></td>
+          <td><%= link_to post.body, post_path(post), class: "text-decoration-none" if !current_user.viewer? %></td>
           <td><%= post.body if current_user.viewer? %></td>
-
+          <% if current_user.admin? %>
+              <td><%= link_to "削除", post_path(post), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
         </tr>
+          <% end %>
       <% end %>
     </tbody>
   </table>

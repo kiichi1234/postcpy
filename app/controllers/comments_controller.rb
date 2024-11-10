@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
-  
+
     if current_user.viewer?
       raise "閲覧ユーザーのため返信出来ません。"
     elsif @comment.save
@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
     else
       raise "保存に失敗しました。"
     end
-    
   rescue => e
     flash[:alert] = e.message
   end

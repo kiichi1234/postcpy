@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   resources :users do
-      member do
-    get 'block'
-  end
+    member do
+      get "block"
+      resource :blocks, only: [:create, :destroy]
+    end
   end
   resources :posts do
     resources :comments, only: [:create, :destroy]

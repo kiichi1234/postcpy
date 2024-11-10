@@ -50,10 +50,11 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-
-    if post.user_id == current_user.id
+    if current_user.admin?
       post.destroy!
-      Rails.logger.info "成功です。"
+      redirect_to posts_path(current_user)
+    elsif post.user_id == current_user.id
+      post.destroy!
       redirect_to user_path(current_user)
     end
   end

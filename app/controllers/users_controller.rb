@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_user, only: %i(show edit block update destroy)
   before_action :logged_in_user, only: %i(index show edit update destroy)
   before_action :admin_user, only: %i(index destroy)
   before_action :correct_user, only: %i(edit update)
@@ -45,9 +45,18 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def block
-    
+    @block = Block.new
+  end
+
+  def user_block
+    @user = User.find(params[:id])
+    @user.update!(blocking_flag: true)
+    redirect_to posts_path(current_user), notice: "投稿が成功しました。"
+  rescue => e
+    flash[:alert] = "ブロックに失敗しました: #{e.message}"
+    render :block
   end
 
   def destroy

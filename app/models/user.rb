@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :blocks, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   has_secure_password
