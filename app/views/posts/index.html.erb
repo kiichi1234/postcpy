@@ -40,9 +40,20 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= category_in_japanese(post.category) %></td>
-          <td><%= link_to post.user.name, block_user_path(post.user) %></td>
-          <td><%= link_to post.body, post_path(post), class: "text-decoration-none" if !current_user.viewer? %></td>
-          <td><%= post.body if current_user.viewer? %></td>
+          <td>
+            <% unless post.user_id == current_user.id %>
+              <%= link_to post.user.name, block_user_path(post.user) %>
+            <% else %>
+              <%= post.user.name %> 
+            <% end %>
+          </td>
+          <td>
+            <% unless current_user.viewer? %>
+              <%= link_to post.body, post_path(post), class: "text-decoration-none" %>
+            <% else %>
+               <span class="text-decoration-none"><%= post.body %></span>
+            <% end %>
+          </td>
           <% if current_user.admin? %>
               <td><%= link_to "削除", post_path(post), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
         </tr>

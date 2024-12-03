@@ -7,10 +7,10 @@
     <% if logged_in? %>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <% unless current_page?(users_path(current_user)) %>
+          <% unless current_page?(users_path) %>
           <li class="nav-item">
             <% if current_user.admin? %>
-            <a class="nav-link" href="<%= users_path(current_user) %>">ユーザー一覧</a>
+            <a class="nav-link" href="<%= users_path %>">ユーザー一覧</a>
           </li>
           <% end %>
           <% end %>
@@ -24,9 +24,9 @@
             <a class="nav-link" href="<%= user_path(current_user) %>">あなたの投稿</a>
           </li>
           <% end %>
-          <% unless current_page?(posts_path(current_user)) %>
+          <% unless current_page?(posts_path) %>
           <li class="nav-item">
-            <a class="nav-link" href="<%= posts_path(current_user) %>">みんなの投稿</a>
+            <a class="nav-link" href="<%= posts_path %>">みんなの投稿</a>
           </li>
           <% end %>
           <li class="nav-item">

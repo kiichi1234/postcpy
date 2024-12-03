@@ -1,0 +1,21 @@
+# 各サービス名
+services:
+  rails-web:
+    # Railsコンテナ名
+    container_name: rails_web_test
+    # Dockerfileへのパス
+    build: .
+    # ビルドされたイメージのタグ
+    image: test_app/rails-web:1.0.0
+    # ボリュームマウント
+    volumes:
+      - .:/app
+      - ../test_app:/test_app
+   
+    # ポートフォワード（ホストのポート：コンテナのポート）
+    ports:
+      - "3000:3000"
+    command: rails server -b 0.0.0.0
+    # プロセスがなくてもコンテナを起動させ続ける
+    tty: true
+    stdin_open: true
