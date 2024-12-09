@@ -1,0 +1,7 @@
+<% if @blocked.present? %>
+  <% @blocked.each do |blocked| %>
+    <p><%= link_to blocked.name,block_user_path(blocked) %></p>
+  <% end %>
+<% else %>
+  <p>ブロックしたユーザーはいません。</p>
+<% end %>

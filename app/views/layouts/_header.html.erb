@@ -29,6 +29,11 @@
             <a class="nav-link" href="<%= posts_path %>">みんなの投稿</a>
           </li>
           <% end %>
+          <% unless current_page?(blocked_user_path(current_user)) %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= blocked_user_path(current_user) %>">ブロックリスト</a>
+          </li>
+          <% end %>
           <li class="nav-item">
             <a class="nav-link" href="<%= logout_path %>" data-turbo-method="delete">ログアウト</a>
           </li>

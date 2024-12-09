@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get "block"
+      get "blocked", to: "users#blocked_user"
       resource :blocks, only: [:create, :destroy]
     end
   end

@@ -9,8 +9,7 @@ class BlocksController < ApplicationController
   def destroy
     user = User.find(params[:id])
     block = Block.find_by(blocker_id: current_user.id, blocked_id: user.id)
-    Block.where(blocker_id: current_user.id, blocked_id: user.id).exists?
     block.destroy!
-    redirect_to block_user_path(@user.id), notice: "ブロック解除しました。"
+    redirect_to block_user_path(user.id), notice: "ブロック解除しました。"
   end
 end

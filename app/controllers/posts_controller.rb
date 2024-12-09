@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :edit, only: %i(update)
-
+  
   def index
     @block = Block.where(blocker_id: current_user.id).pluck(:blocked_id)
     @posts = Post.where.not(user_id: @block)

@@ -3,11 +3,11 @@
     <div class="col-6 mx-auto">
       <%= form_for(:session, url: login_to_path, method: "POST") do |f| %>
         <div class="mb-3">
-          <%= f.label :name, "Name", class: "form-label" %>
+          <%= f.label :name, "ユーザー名", class: "form-label" %>
           <%= f.text_field :name, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :password, "Password", class: "form-label" %>
+          <%= f.label :password, "パスワード", class: "form-label" %>
           <%= f.password_field :password, class: "form-control" %>
         </div>
         <div class="text-center">
