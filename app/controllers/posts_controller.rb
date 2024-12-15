@@ -11,9 +11,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @block = Block.where(blocker_id: current_user.id).pluck(:blocked_id)
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.includes(:user).all
+    @comments = @post.comments.where.not(user_id: @block)
   end
 
   def new

@@ -1,9 +1,18 @@
-<div class="container my-5">
-  <h1 class="display-4 text-center">相談アプリ Clear</h1>
-  <div class="lead text-center">
-    <span>お互いの知識や経験を共有しながら悩みを解決していく相談アプリ</span>
+<% if logged_in?%>
+  <div class="container my-5">
+    <h1 class="display-4 text-center">相談アプリ Clear</h1>
+    <div class="lead text-center">
+      <span>お互いの知識や経験を共有しながら悩みを解決していく相談アプリ</span>
+    </div>
   </div>
-  <div class="text-center mt-4">
-    <%= link_to "利用する", login_path, class: "btn btn-primary btn-lg" %>
-  </div>
-</div>
+<%else%>
+    <div class="container my-5">
+      <h1 class="display-4 text-center">相談アプリ Clear</h1>
+      <div class="lead text-center">
+        <span>お互いの知識や経験を共有しながら悩みを解決していく相談アプリ</span>
+      </div>
+      <div class="text-center mt-4">
+        <%= link_to "利用する", login_path, class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+<%end%>

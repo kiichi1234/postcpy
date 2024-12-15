@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit block update destroy blocked_user )
   before_action :logged_in_user, only: %i(index show edit update destroy)
   before_action :admin_user, only: %i(index destroy )
-  before_action :correct_user, only: %i(edit update)
+  before_action :correct_user, only: %i(edit update show)
+  before_action :not_current, only: %i(block)
 
   def index
     @users = User.where.not(admin: true).order(created_at: :desc)
