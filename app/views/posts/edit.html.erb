@@ -4,7 +4,7 @@
   <%= form_with model: @post, class: "form" do |f| %>
     <div class="mb-3">
       <%= f.label :category, "カテゴリー", class: "form-label" %>
-      <%= f.select :category, [["身体的", "身体的"], ["精神的", "精神的"], ["生活面", "生活面"], ["その他", "その他"]],
+      <%= f.select :category,[["身体面", "physical aspect"], ["精神面", "mental aspect"], ["生活面", "life aspect"], ["その他", "other"]],
                    include_blank: "選択して下さい", class: "form-select" %>
     </div>
 

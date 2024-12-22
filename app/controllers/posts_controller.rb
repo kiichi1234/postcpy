@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i(edit update)
+  before_action :correct_user, only: %i(edit update)
   before_action :edit, only: %i(update)
   
   def index
@@ -69,5 +71,9 @@ class PostsController < ApplicationController
 
   def post_search_params
     params.fetch(:search, {}).permit(:category, :word)
+  end
+  def set_post
+    @post = Post.find(params[:id])
+    @user = @post.user
   end
 end
