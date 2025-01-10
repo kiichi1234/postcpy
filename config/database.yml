@@ -23,6 +23,8 @@ test:
 production:
   <<: *default
   adapter: postgresql
+  database: postcpy
   encoding: unicode
   pool: 5
+  url: <%= ENV["DATABASE_URL"] %>
 #productionの下はインデント(半角スペース２個)
