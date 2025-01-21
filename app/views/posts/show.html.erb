@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <p class="linebreak mt-4"><%= @post.body %></p>
+  <p class="linebreak mt-4"><%= raw Rinku.auto_link(simple_format(@post.body), :urls, 'target="_blank"') %></p>
 </div>
 
 <div class="row justify-content-center">
