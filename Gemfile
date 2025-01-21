@@ -13,6 +13,7 @@ gem "bootstrap", "~> 5.3.0"
 gem "jquery-rails"
 gem "sassc-rails"
 gem "rufo"
+gem 'rinku'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"

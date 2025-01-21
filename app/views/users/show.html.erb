@@ -16,7 +16,7 @@
           <% @posts.each do |current_user_post| %>
             <tr>
               <td><%= category_in_japanese(current_user_post.category) %></td>
-              <td class="text-wrap"><%= current_user_post.body %></td>
+              <td class="text-wrap"><%= raw Rinku.auto_link(simple_format(current_user_post.body), :urls, 'target="_blank"') %></td>
               <td><%= link_to "編集", edit_post_path(current_user_post), class: "btn btn-success" %></td>
               <td><%= link_to "削除", post_path(current_user_post), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
             </tr>
