@@ -7,11 +7,11 @@
         <div class="col-md-4">
           <%= f.label :category, "カテゴリー", class: "form-label" %>
           <%= f.select :category, [["身体面", "physical aspect"], ["精神面", "mental aspect"], ["生活面", "life aspect"], ["その他", "other"]],
-                       include_blank: "選択して下さい", class: "form-select" %>
+                       include_blank: "選択して下さい", class: "form-select", selected: params.dig(:search, :category) %>
         </div>
         <div class="col-md-6">
           <%= f.label :word, "内容", class: "form-label" %>
-          <%= f.text_area :word, class: "form-control", rows: 1 %>
+          <%= f.text_area :word, class: "form-control", rows: 1 , value: params.dig(:search, :word) %>
         </div>
         <div class="col-md-2 d-flex align-items-end">
           <%= f.submit "検索する", class: "btn btn-primary w-100" %>

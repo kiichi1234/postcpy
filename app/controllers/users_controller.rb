@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :password, :password_confirmation, :viewer)
   end
 
-  def set_user
+  def set_user #どのユーザーかを調べる。user_idを取り出す。
     @user = User.find(params[:id])
   end
 end
