@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      params[:session][:remember_me] == "1" ? remember(user) : forget(user)
+      params[:session][:remember_me] == "1" ? remember(user) : forget(user) #永続的なログイン
       Rails.logger.info "成功です。"
       redirect_to new_post_path
     else

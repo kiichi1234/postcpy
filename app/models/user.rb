@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
-  has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :destroy #アソシエーション設定。ユーザーモデルから投稿モデルを検索できるようにする。
   has_many :comments, dependent: :destroy
   has_many :blocked_users, class_name: 'Block', foreign_key: :blocked_id, dependent: :destroy
   has_many :blockers, class_name: 'Block', foreign_key: :blocker_id, dependent: :destroy

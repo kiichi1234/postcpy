@@ -1,11 +1,12 @@
+#controller:viewでデータを表示するためにモデルから必要なデータを取得
 class PostsController < ApplicationController
   before_action :set_post, only: %i(edit update)
   before_action :correct_user, only: %i(edit update)
   before_action :edit, only: %i(update)
   
-  def index
-    @block = Block.where(blocker_id: current_user.id).pluck(:blocked_id)
-    @posts = Post.where.not(user_id: @block)
+  def index 
+    @block = Block.where(blocker_id: current_user.id).pluck(:blocked_id) #現在ログインしているユーザーのブロックユーザーを取得。
+    @posts = Post.where.not(user_id: @block) #blockをpostの条件を入れることでブロックユーザー投稿非表示
     @category = params.dig(:search, :category)
     @word = params.dig(:search, :word)
     @posts = @posts.where(category: @category) if @category.present?
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if current_user.viewer?
-      raise "閲覧ユーザーのため投稿出来ません。"
+      raise "閲覧ユーザーのため投稿出来ません。" #エラーハンドリング
     elsif @post.save
       redirect_to user_path(current_user), notice: "投稿が成功しました。"
     else

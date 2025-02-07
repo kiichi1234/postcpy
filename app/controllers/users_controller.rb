@@ -10,10 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: current_user.id).order("created_at DESC")
+    @posts = Post.where(user_id: current_user.id).order("created_at DESC") #where 条件が一致したレコードを全て取り出す。
   end
 
-  def new
+  def new #新規作成ページを表示するためのアクション
     if logged_in? && !current_user.admin?
       flash[:info] = "すでにログインしています。"
       redirect_to current_user
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def block
     @block = Block.new
-    @blocked_exists = Block.exists?(blocker_id: current_user.id, blocked_id: @user.id)
+    @blocked_exists = Block.exists?(blocker_id: current_user.id, blocked_id: @user.id) #すでに存在していたら
     
   end
 
